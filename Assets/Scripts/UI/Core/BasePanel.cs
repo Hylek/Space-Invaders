@@ -30,9 +30,9 @@ namespace UI.Core
             CanvasGroup.alpha = 0;
         }
 
-        public virtual async void Open() { }
+        public virtual void Open() { }
 
-        public virtual async void Close() { }
+        public virtual void Close() { }
         
         /// <summary>
         /// Begins a transition Task that allows you to wait for it to complete before attempting other logic
