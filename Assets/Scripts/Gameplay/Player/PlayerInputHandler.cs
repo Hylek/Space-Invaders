@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Gameplay.Player
 {
@@ -14,13 +15,21 @@ namespace Gameplay.Player
         {
             _input = new StandardControlMap();
             _speed = speed;
+
+            _input.Player.Fire.performed += OnFireCalled;
             
             Enable();
-            
+                
             // Determine screen bounds
             if (Camera.main == null) return;
+            
             _minXClamp = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x + playerWidth / 2;
             _maxXClamp = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x - playerWidth / 2;
+        }
+
+        private void OnFireCalled(InputAction.CallbackContext obj)
+        {
+            
         }
 
         public void Enable()
