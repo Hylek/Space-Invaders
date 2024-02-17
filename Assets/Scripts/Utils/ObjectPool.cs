@@ -35,18 +35,21 @@ namespace Utils
         /// <returns>An object from the pool, ready to be used.</returns>
         public PoolableObject GetObject()
         {
-            if (_pool.Count == 0 && expandDynamically)              
+            switch (_pool.Count)
             {
-                var newObject = Instantiate(poolObjectPrefab, transform);
-                newObject.Init();                                   
-                _pool.Add(newObject);                               
-            }
-            else
-            {
-                return null;                                 
+                case 0 when expandDynamically:
+                {
+                    var newObject = Instantiate(poolObjectPrefab, transform);
+                    newObject.Init();                                   
+                    _pool.Add(newObject);
+                    return newObject;
+                }
+                case 0 when !expandDynamically:
+                    return null;
             }
 
-            var objectToRelease = _pool[0];                      
+            var objectToRelease = _pool[0];      
+            objectToRelease.Init();
             _pool.RemoveAt(0);                                 
 
             return objectToRelease;
@@ -58,6 +61,7 @@ namespace Utils
         /// <param name="objectToReturn">The object to return to the pool.</param>
         public void ReturnObject(PoolableObject objectToReturn)
         {
+            objectToReturn.transform.parent = transform;
             objectToReturn.Reset();
             _pool.Add(objectToReturn);
         }

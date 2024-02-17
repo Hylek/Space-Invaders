@@ -19,9 +19,20 @@ namespace Gameplay.Weaponry
 
         public void Fire()
         {
+            if (_isOnCooldown) return;
+            
             var bullet = bulletPool.GetObject();
             var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.transform.parent = null;
             bulletScript.Shoot(transform);
+            bulletScript.LifetimeReached += OnBulletLifetimeReached;
+            _isOnCooldown = true;
+        }
+
+        private void OnBulletLifetimeReached(Bullet bullet)
+        {
+            bullet.LifetimeReached -= OnBulletLifetimeReached;
+            bulletPool.ReturnObject(bullet);
         }
 
         private void Update()
