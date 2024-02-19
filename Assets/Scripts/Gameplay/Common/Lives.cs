@@ -1,5 +1,7 @@
 using System;
 
+// Made by Daniel Cumbor in 2024.
+
 namespace Gameplay.Common
 {
     /// <summary>

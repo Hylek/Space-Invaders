@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Made by Daniel Cumbor in 2024.
+
 namespace Utils
 {
     public interface IObjectPool

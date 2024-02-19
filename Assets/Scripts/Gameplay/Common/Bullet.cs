@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Utils;
 
-namespace Gameplay.Weaponry
+// Made by Daniel Cumbor in 2024.
+
+namespace Gameplay.Common
 {
     public class Bullet : PoolableObject
     {
@@ -15,7 +16,7 @@ namespace Gameplay.Weaponry
 
         private SpriteRenderer _spriteRenderer;
         private BoxCollider2D _boxCollider2D;
-        private bool _canMove;
+        private bool _canMove, _isFriendly;
         private float _currentLifetime;
 
         private void Awake()
@@ -39,11 +40,12 @@ namespace Gameplay.Weaponry
             _spriteRenderer.color = Color.clear;
         }
 
-        public void Shoot(Transform transform)
+        public void Shoot(Transform startTransform, bool isFriendly = false)
         {
             _spriteRenderer.color = Color.white;
-            this.transform.position = transform.position;
+            transform.position = startTransform.position;
             _canMove = true;
+            _isFriendly = isFriendly;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -51,10 +53,9 @@ namespace Gameplay.Weaponry
             Debug.Log($"Bullet has hit {other.transform.name}");
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            Debug.Log($"Bullet has hit {other.transform.name}");
-        }
+        public bool IsBulletFriendly() => _isFriendly;
+
+        public int GetDamage() => damageToInflict;
 
         private void Update()
         {

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Made by Daniel Cumbor in 2024.
+
 namespace Utils
 {
     /// <summary>
@@ -35,23 +37,26 @@ namespace Utils
         /// <returns>An object from the pool, ready to be used.</returns>
         public PoolableObject GetObject()
         {
-            switch (_pool.Count)
+            if (_pool.Count <= 0)
             {
-                case 0 when expandDynamically:
+                if (expandDynamically)
                 {
                     var newObject = Instantiate(poolObjectPrefab, transform);
-                    newObject.Init();                                   
-                    _pool.Add(newObject);
+                    newObject.Init();
+                    
+                    // Do not store it as we plan to immediately return it.
                     return newObject;
                 }
-                case 0 when !expandDynamically:
-                    return null;
+
+                Debug.LogWarning("The pool has no available objects!");
+
+                return null;
             }
 
             var objectToRelease = _pool[0];      
             objectToRelease.Init();
-            _pool.RemoveAt(0);                                 
-
+            _pool.RemoveAt(0); 
+                
             return objectToRelease;
         }
         

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Made by Daniel Cumbor in 2023.
+
 namespace Utils
 {
     public static class Locator

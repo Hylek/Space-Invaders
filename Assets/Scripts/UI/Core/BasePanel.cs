@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Utils;
 
+// Made by Daniel Cumbor in 2024.
+
 public enum PanelStatus
 {
     Hidden, Visible

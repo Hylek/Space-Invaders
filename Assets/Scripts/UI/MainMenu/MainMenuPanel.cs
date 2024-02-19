@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace UI
+// Made by Daniel Cumbor in 2024.
+
+namespace UI.MainMenu
 {
     public class MainMenuPanel : BasePanel
     {

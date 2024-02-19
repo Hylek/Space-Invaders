@@ -1,13 +1,15 @@
-using System;
 using UnityEngine;
 using Utils;
 
-namespace Gameplay.Weaponry
+// Made by Daniel Cumbor in 2024.
+
+namespace Gameplay.Common
 {
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private ObjectPool bulletPool;
         [SerializeField] private float fireRate;
+        [SerializeField] private bool isPlayerWeapon;
 
         private float _currentRate;
         private bool _isOnCooldown;
@@ -24,7 +26,7 @@ namespace Gameplay.Weaponry
             var bullet = bulletPool.GetObject();
             var bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.transform.parent = null;
-            bulletScript.Shoot(transform);
+            bulletScript.Shoot(transform, isPlayerWeapon);
             bulletScript.LifetimeReached += OnBulletLifetimeReached;
             _isOnCooldown = true;
         }

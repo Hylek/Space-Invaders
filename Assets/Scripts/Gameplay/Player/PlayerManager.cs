@@ -1,12 +1,16 @@
+using System;
 using Gameplay.Common;
-using Gameplay.Weaponry;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+// Made by Daniel Cumbor in 2024.
 
 namespace Gameplay.Player
 {
     public class PlayerManager : MonoBehaviour
     {
+        public static event Action PlayerHit;
+        
         [SerializeField] private int maxLives;
         [SerializeField] private float speed;
         
@@ -72,7 +76,21 @@ namespace Gameplay.Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Player hit!");
+            var bullet = other.GetComponent<Bullet>();
+            if (bullet)
+            {
+                if (bullet.IsBulletFriendly()) return;
+                
+                Debug.Log("Player hit, taking damage!");
+                
+                var damage = bullet.GetDamage();
+                _playerLives.RemoveLife(damage);
+                PlayerHit?.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("Could not get bullet script from colliding object!");
+            }
         }
 
         private void OnDestroy()

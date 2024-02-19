@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Made by Daniel Cumbor in 2022.
+
 namespace Utils
 {
     public class Singleton<T> : MonoBehaviour where T : Component

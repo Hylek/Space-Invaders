@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
+// Made by Daniel Cumbor in 2024.
+
 namespace UI.Core
 {
     /// <summary>
