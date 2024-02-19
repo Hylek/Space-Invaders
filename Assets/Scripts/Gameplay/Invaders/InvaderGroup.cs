@@ -13,12 +13,10 @@ namespace Gameplay.Invaders
         [SerializeField] private GameObject rowPrefab;
 
         private List<InvaderRow> _rows;
-        private WaitForEndOfFrame waitFrame;
 
         private void Start()
         {
-            waitFrame = new WaitForEndOfFrame();
-            SetupGroup();
+            //SetupGroup();
         }
 
         private void SetupGroup()

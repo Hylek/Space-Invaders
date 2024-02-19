@@ -50,7 +50,11 @@ namespace Gameplay.Common
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"Bullet has hit {other.transform.name}");
+            if (other.CompareTag("Invader"))
+            {
+                _canMove = false;
+                LifetimeReached?.Invoke(this);
+            }
         }
 
         public bool IsBulletFriendly() => _isFriendly;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utils;
 
@@ -7,9 +8,25 @@ namespace Gameplay.Invaders
 {
     public class Invader : PoolableObject
     {
+        public event Action<Invader> IsDead;
+
+        private Transform _startPosition;
+        private SpriteRenderer _renderer;
+        private BoxCollider2D _collider2D;
+
+        private void Awake()
+        {
+            _renderer = GetComponent<SpriteRenderer>();
+            _collider2D = GetComponent<BoxCollider2D>();
+            _startPosition = transform;
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"Something has struck {transform.name}");
+            _renderer.color = Color.clear;
+            _collider2D.enabled = false;
+            transform.position = new Vector3(-1000, 0, 0);
+            IsDead?.Invoke(this);
         }
     }
 }
