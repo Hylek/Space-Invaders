@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
+    "com.danielcumbor.messageservice": "https://github.com/Hylek/Message-Service.git",
+    "com.danielcumbor.servicelocator": "https://github.com/Hylek/Service-Locator.git",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.ide.rider": "3.0.27",
     "com.unity.ide.visualstudio": "2.0.22",

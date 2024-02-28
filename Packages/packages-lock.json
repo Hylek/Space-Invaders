@@ -9,6 +9,22 @@
       },
       "hash": "57e726cc4f2c8d3488011f312d5b22dab2b19dc5"
     },
+    "com.danielcumbor.messageservice": {
+      "version": "https://github.com/Hylek/Message-Service.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.danielcumbor.servicelocator": "1.0.0"
+      },
+      "hash": "3524bd264fa02b8c10cd8bf03b103b12b0a63332"
+    },
+    "com.danielcumbor.servicelocator": {
+      "version": "https://github.com/Hylek/Service-Locator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ab25128bd246358f106067611d7b1104e4668734"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.0",
       "depth": 1,
